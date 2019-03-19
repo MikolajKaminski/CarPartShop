@@ -17,10 +17,10 @@ public class TestClass {
         //Arrange
 
         //Act
-        i += 1.0;
+        this.i += 1.0;
 
         //Assert
-        assert(i == 1.0);
+        assert(this.i == 1.0);
     }
 
 }
