@@ -1,5 +1,7 @@
 package Factories;
 
+import Products.AProduct;
+
 public interface IProductFactory {
-    public IProduct getProduct();
+    public AProduct getProduct();
 }

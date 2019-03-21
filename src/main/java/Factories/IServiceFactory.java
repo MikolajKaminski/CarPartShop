@@ -1,5 +1,7 @@
 package Factories;
 
+import Services.AService;
+
 public interface IServiceFactory {
-    public Service getService();
+    public AService getService();
 }

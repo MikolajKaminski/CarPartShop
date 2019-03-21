@@ -1,5 +1,8 @@
 package Factories;
 
+import Products.AProduct;
+import Products.Spoiler;
+
 public class SpoilerFactory implements IProductFactory {
     private Spoiler spoiler;
 
@@ -7,8 +10,7 @@ public class SpoilerFactory implements IProductFactory {
         this.spoiler = new Spoiler(quantity, price, color, brand, name, weight);
     }
 
-    @Override
-    public IProduct getProduct() {
+    public AProduct getProduct() {
         return this.spoiler;
     }
 }

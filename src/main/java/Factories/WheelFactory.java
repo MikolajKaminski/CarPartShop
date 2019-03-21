@@ -1,5 +1,8 @@
 package Factories;
 
+import Products.AProduct;
+import Products.Wheel;
+
 public class WheelFactory implements IProductFactory {
     private Wheel wheel;
 
@@ -7,8 +10,7 @@ public class WheelFactory implements IProductFactory {
         this.wheel = new Wheel(quantity, price, color, brand, name, weight);
     }
 
-    @Override
-    public IProduct getProduct() {
+    public AProduct getProduct() {
         return this.wheel;
     }
 }
