@@ -84,6 +84,7 @@ public class TestClass {
 
     @org.junit.Test
     public void CalculateInvoiceWithInstalling() throws Exception {
+        // TODO: Allan
         //Arrange
 
         //Act
@@ -94,6 +95,7 @@ public class TestClass {
 
     @org.junit.Test
     public void TwoCartsForUser() throws Exception {
+        // TODO: Elvis
         //Arrange
 
         //Act
@@ -104,6 +106,7 @@ public class TestClass {
 
     @org.junit.Test
     public void DifferentBruttoPricePerCountry() throws Exception {
+        // TODO: Martin
         //Arrange
 
         //Act
@@ -114,6 +117,7 @@ public class TestClass {
 
     @org.junit.Test
     public void AddingAndRetrievingFeedback() throws Exception {
+        // TODO: Elvis
         //Arrange
 
         //Act
