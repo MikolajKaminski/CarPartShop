@@ -3,6 +3,7 @@ package Shop;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import Bookkeeping.Invoice;
 
 public class User {
     private String name;
@@ -12,7 +13,7 @@ public class User {
     public User(String name) {
         this.name = name;
 
-        this.invoices = new ArrayList<>();
+        this.invoices = new ArrayList<Invoice>();
     }
 
     public void makeCart() {

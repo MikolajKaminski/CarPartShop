@@ -1,31 +1,42 @@
 package Shop;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import Factories.IProductFactory;
+import Factories.SpoilerFactory;
+import Factories.WheelFactory;
+import Products.AProduct;
+import Factories.BumperFactory;
+
+
 public class Shop {
-    private List<Products.AProduct> products;
+    private List<AProduct> products;
     private List<User> users;
-    private static final NUMBER_OF_FIELDS = 7L;
+    private static final int NUMBER_OF_FIELDS = 7;
 
     public Shop() {
-        this.products = new ArrayList<>();
-        this.users = new ArrayList<>();
+        this.products = new ArrayList<AProduct>();
+        this.users = new ArrayList<User>();
     }
 
     public void populateShop(String products, String users) {
         String[] productList = products.split(", ");
+        IProductFactory factory = null;
         for(int i = 0; i < productList.length; i += NUMBER_OF_FIELDS) {
+            //TODO: STRING DOESN'T WORK IN SWITCH (Technically works from Java 1.7)...
             switch(productList[i]) {
                 case "Bumper":
-                    ProductFactory factory = new BumperFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
+                    factory = new BumperFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
                     break;
                 case "Spoiler":
-                    ProductFactory factory = new SpoilerFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
+                    factory = new SpoilerFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
                     break;
                 case "Wheel":
-                    ProductFactory factory = new WheelFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
+                    factory = new WheelFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
                     break;
                 default:
+
                     System.out.println("Incorrect item.");
             }
             this.products.add(factory.getProduct());
@@ -37,7 +48,7 @@ public class Shop {
         }
     }
 
-    public List<IProduct> getProducts() {
+    public List<AProduct> getProducts() {
         return this.products;
     }
 
@@ -46,17 +57,17 @@ public class Shop {
     }
 
     public void makePurchase(User user) {
-        List<IProduct> userCart = user.getCart().getProducts();
+        List<AProduct> userCart = user.getCart().getProducts();
 
         Boolean available = true;
-        for(IProduct item : userCart) {
+        for(AProduct item : userCart) {
             if(!item.available()) {
                 available = false;
             }
         }
 
         if(available) {
-            for(IProduct item : userCart) {
+            for(AProduct item : userCart) {
                 item.buyItem();
             }
             System.out.println("Purchase complete.");
