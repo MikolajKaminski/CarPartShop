@@ -4,6 +4,7 @@ import Bookkeeping.PriceNetto;
 
 import Products.AProduct;
 import Products.Bumper;
+import Products.Feedback;
 import Shop.Shop;
 import Shop.User;
 import Shop.Cart;
@@ -137,14 +138,15 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void AddingAndRetrievingFeedback() throws Exception {
-        // TODO: Elvis
+    public void AddingAndRetrievingFeedback() {
         //Arrange
-
+        AProduct product = shop.getProducts().get(0);
         //Act
-
+        product.addFeedback("Perfect product", 4);
         //Assert
-        //assert(x == y);
+        Feedback productFeedback = product.getFeedback().get(0);
+        assert (productFeedback.getComment().equals("Perfect product"));
+        assert (productFeedback.getRaiting() == 4);
     }
 
     @org.junit.Test
