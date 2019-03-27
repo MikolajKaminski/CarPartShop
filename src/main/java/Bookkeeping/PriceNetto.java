@@ -9,7 +9,7 @@ import java.util.List;
 public class PriceNetto {
 
     private Double totalPrice = 0.0;
-    private List<AService> services = new ArrayList();
+    private List<AService> services = new ArrayList<AService>();
 
     public PriceNetto(List<AProduct> products) {
         for(AProduct product : products) {
@@ -23,7 +23,7 @@ public class PriceNetto {
 
     public Double getPrice() {
         Double totalServicePrice = 0.0;
-        for(AService service : services) {
+        for(AService service : this.services) {
             totalServicePrice += service.getPrice();
         }
         return this.totalPrice + totalServicePrice;

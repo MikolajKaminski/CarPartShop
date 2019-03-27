@@ -14,7 +14,7 @@ public class PriceBrutto extends PriceNetto {
     }
 
     public Double getPrice() {
-        Double vatAmount = Math.round(super.getPrice() * vat * 100.0) / 100.0;
+        Double vatAmount = Math.round(super.getPrice() * this.vat * 100.0) / 100.0;
         return super.getPrice() + vatAmount;
     }
 

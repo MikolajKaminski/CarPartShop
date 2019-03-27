@@ -36,8 +36,8 @@ public class User {
     }
 
     public void makeInvoice() {
-        Cart cartClone = cart;
-        invoices.add(new Invoice(country, cartClone));
+        Cart cartClone = this.cart;
+        invoices.add(new Invoice(this.country, cartClone));
     }
 
     public List<Invoice> getInvoices() {

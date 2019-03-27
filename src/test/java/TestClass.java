@@ -12,25 +12,24 @@ import Shop.Cart;
 public class TestClass {
 
     private Shop shop;
-    private String products = "Bumper, 3, 200.00, black, Mazda, Mazda Bumper Black, 30.00, " +
-            "Bumper, 2, 150.00, red, Mazda, Mazda Bumper Red, 30.00, " +
-            "Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00, " +
-            "Spoiler, 5, 750.00, black, Mazda, Mazda Spoiler Black, 15.00, " +
-            "Wheel, 4, 150.00, silver, Mazda, Mazda Wheel, 7.00, " +
-            "Wheel, 20, 200.00, silver, BMW, BMW Wheel, 12.00";
-    private String users = "Nick, Netherlands, Martin, Belgium, Elvis, Luxembourg";
-
 
     @org.junit.Before
     public void Before(){
+        String products = "Bumper, 3, 200.00, black, Mazda, Mazda Bumper Black, 30.00, " +
+                "Bumper, 2, 150.00, red, Mazda, Mazda Bumper Red, 30.00, " +
+                "Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00, " +
+                "Spoiler, 5, 750.00, black, Mazda, Mazda Spoiler Black, 15.00, " +
+                "Wheel, 4, 150.00, silver, Mazda, Mazda Wheel, 7.00, " +
+                "Wheel, 20, 200.00, silver, BMW, BMW Wheel, 12.00";
+        String users = "Nick, Netherlands, Martin, Belgium, Elvis, Luxembourg";
         //Make shop
         this.shop = new Shop();
         //Populate shop
-        this.shop.populateShop(this.products, this.users);
+        this.shop.populateShop(products, users);
     }
 
     @org.junit.Test
-    public void ReductionInQuantityOnPurchase() throws Exception {
+    public void ReductionInQuantityOnPurchase() {
         //Arrange
         Integer initialAmount = this.shop.getProducts().get(2).getQuantity();
         this.shop.getUsers().get(0).makeCart();
@@ -50,7 +49,7 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void BruttoAndNettoTotalPrice() throws Exception {
+    public void BruttoAndNettoTotalPrice() {
         //Arrange
         this.shop.getUsers().get(0).makeCart();
 
@@ -69,7 +68,7 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void CalculateInvoiceWithDelivery() throws Exception {
+    public void CalculateInvoiceWithDelivery() {
         //Arrange
         this.shop.getUsers().get(0).makeCart();
 
@@ -86,38 +85,37 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void CalculateInvoiceWithInstalling() throws Exception {
+    public void CalculateInvoiceWithInstalling() {
         // TODO: Allan
         //Arrange
 
         //Act
 
         //Assert
-        //assert(x == y);
     }
 
     @org.junit.Test
     public void TwoCartsForUser() {
-        // making a first purchase
         //Arrange
-        User user = shop.getUsers().get(0);
+        // making a first purchase
+        User user = this.shop.getUsers().get(0);
         user.makeCart();
         Cart cart1 = user.getCart();
-        AProduct product1 = shop.getProducts().get(0);
-        AProduct product2 = shop.getProducts().get(4);
+        AProduct product1 = this.shop.getProducts().get(0);
+        AProduct product2 = this.shop.getProducts().get(4);
+
         //Act
         cart1.addToCart(product1);
         cart1.addToCart(product2);
-        shop.makePurchase(user);
+        this.shop.makePurchase(user);
         Invoice invoice1 = user.getInvoices().get(0);
         invoice1.addService("Delivery");
-
 
         // making a second purchase with the same user
         user.makeCart();
         Cart cart2 = user.getCart();
         cart2.addToCart(product2);
-        shop.makePurchase(user);
+        this.shop.makePurchase(user);
         Invoice invoice2 = user.getInvoices().get(1);
         invoice2.addService("Delivery");
 
@@ -127,20 +125,19 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void DifferentBruttoPricePerCountry() throws Exception {
+    public void DifferentBruttoPricePerCountry() {
         // TODO: Martin
         //Arrange
 
         //Act
 
         //Assert
-        //assert(x == y);
     }
 
     @org.junit.Test
     public void AddingAndRetrievingFeedback() {
         //Arrange
-        AProduct product = shop.getProducts().get(0);
+        AProduct product = this.shop.getProducts().get(0);
         //Act
         product.addFeedback("Perfect product", 4);
         //Assert
@@ -150,7 +147,7 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void AddingProducts() throws Exception {
+    public void AddingProducts() {
         //Arrange
         //Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00
         Integer amountOfProducts = this.shop.getProducts().size();
@@ -165,7 +162,7 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void AddingUsers() throws Exception {
+    public void AddingUsers() {
         //Arrange
         //Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00
         Integer amountOfUsers = this.shop.getUsers().size();
@@ -179,4 +176,5 @@ public class TestClass {
         assert(amountOfUsers + 1 == newAmountOfUsers);
     }
 
+    //TODO: Should we maybe add some functionality to the products? Or do you think this is enough stuff?
 }

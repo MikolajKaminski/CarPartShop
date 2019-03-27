@@ -13,15 +13,6 @@ public class Delivery extends AService {
         super(products);
 
         this.deliveryPrice = country.getDeliveryCost();
-
-		/*Double totalWeight = 0.0;
-
-		for(IProduct product : super.getProducts()) {
-			totalWeight += product.getWeight();
-		}
-
-		this.totalPrice = Math.round(totalWeight * country.getDeliveryCost() * 100.0) / 100.0;
-		*/
     }
 
     @Override

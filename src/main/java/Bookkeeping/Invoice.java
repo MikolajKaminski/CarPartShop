@@ -34,7 +34,7 @@ public class Invoice {
     }
 
     public Double getTotalPrice() {
-        return totalPrice.getPrice();
+        return this.totalPrice.getPrice();
     }
 
 }
