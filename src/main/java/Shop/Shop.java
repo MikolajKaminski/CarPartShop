@@ -24,7 +24,6 @@ public class Shop {
         String[] productList = products.split(", ");
         IProductFactory factory = null;
         for(int i = 0; i < productList.length; i += NUMBER_OF_FIELDS) {
-            //TODO: STRING DOESN'T WORK IN SWITCH (Technically works from Java 1.7)...
             switch(productList[i]) {
                 case "Bumper":
                     factory = new BumperFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));

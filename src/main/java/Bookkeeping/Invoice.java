@@ -12,7 +12,6 @@ public class Invoice {
     private Country country;
 
     public Invoice(String country, Cart cart) {
-        //TODO: STRING DOESN'T WORK IN SWITCH (Technically works from Java 1.7)...
         switch(country) {
             case "Belgium":
                 this.country = new Country(19, 4.99, 39.99);
