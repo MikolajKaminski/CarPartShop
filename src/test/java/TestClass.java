@@ -1,3 +1,4 @@
+import Bookkeeping.Invoice;
 import Bookkeeping.PriceBrutto;
 import Bookkeeping.PriceNetto;
 
@@ -5,6 +6,7 @@ import Products.AProduct;
 import Products.Bumper;
 import Shop.Shop;
 import Shop.User;
+import Shop.Cart;
 
 public class TestClass {
 
@@ -94,14 +96,33 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void TwoCartsForUser() throws Exception {
-        // TODO: Elvis
+    public void TwoCartsForUser() {
+        // making a first purchase
         //Arrange
-
+        User user = shop.getUsers().get(0);
+        user.makeCart();
+        Cart cart1 = user.getCart();
+        AProduct product1 = shop.getProducts().get(0);
+        AProduct product2 = shop.getProducts().get(4);
         //Act
+        cart1.addToCart(product1);
+        cart1.addToCart(product2);
+        shop.makePurchase(user);
+        Invoice invoice1 = user.getInvoices().get(0);
+        invoice1.addService("Delivery");
+
+
+        // making a second purchase with the same user
+        user.makeCart();
+        Cart cart2 = user.getCart();
+        cart2.addToCart(product2);
+        shop.makePurchase(user);
+        Invoice invoice2 = user.getInvoices().get(1);
+        invoice2.addService("Delivery");
 
         //Assert
-        //assert(x == y);
+        assert(invoice1.getTotalPrice() == 521.06);
+        assert (invoice2.getTotalPrice() == 201.63);
     }
 
     @org.junit.Test

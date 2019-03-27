@@ -2,7 +2,6 @@ package Shop;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import Bookkeeping.Country;
 import Bookkeeping.Invoice;
@@ -37,8 +36,8 @@ public class User {
     }
 
     public void makeInvoice() {
-        this.invoices.add(new Invoice(country, cart));
-        //TODO: After the creation of the invoice, there is no way now to create a new cart without deleting the info in the old one
+        Cart cartClone = cart;
+        invoices.add(new Invoice(country, cartClone));
     }
 
     public List<Invoice> getInvoices() {
