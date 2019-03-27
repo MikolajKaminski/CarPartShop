@@ -38,6 +38,7 @@ public class User {
 
     public void makeInvoice() {
         this.invoices.add(new Invoice(country, cart));
+        //TODO: After the creation of the invoice, there is no way now to create a new cart without deleting the info in the old one
     }
 
     public List<Invoice> getInvoices() {
