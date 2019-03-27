@@ -56,6 +56,16 @@ public class Shop {
         return this.users;
     }
 
+    //TODO: Add new product
+    public void newProduct() {
+
+    }
+
+    //TODO: Add new user
+    public void newUser() {
+
+    }
+
     public void makePurchase(User user) {
         List<AProduct> userCart = user.getCart().getProducts();
 
