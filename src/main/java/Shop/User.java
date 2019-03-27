@@ -30,6 +30,7 @@ public class User {
         System.out.println("Belgium: 1");
         System.out.println("Netherlands: 2");
         System.out.println("Luxembourg: 3");
+        //TODO: Input not working in IntelliJ
         Scanner sc = new Scanner(System.in);
         Integer input = sc.nextInt();
         System.out.println("--------------------------------------");

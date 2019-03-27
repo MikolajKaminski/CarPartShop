@@ -1,5 +1,5 @@
-import org.junit.Test;
-import org.junit.Before;
+import Bookkeeping.PriceBrutto;
+import Bookkeeping.PriceNetto;
 
 import Shop.Shop;
 
@@ -14,22 +14,131 @@ public class TestClass {
             "Wheel, 20, 200.00, silver, BMW, BMW Wheel, 12.00";
     private String users = "Nick, Martin";
 
-    private Double i;
 
-    @Before
+    @org.junit.Before
     public void Before(){
-        this.i = 0.0;
+        //Make shop
+        this.shop = new Shop();
+        //Populate shop
+        this.shop.populateShop(this.products, this.users);
     }
 
-    @Test
-    public void FirstTestCase() {
+    @org.junit.Test
+    public void ReductionInQuantityOnPurchase() throws Exception {
+        //Arrange
+        Integer initialAmount = this.shop.getProducts().get(2).getQuantity();
+        this.shop.getUsers().get(0).makeCart();
+        this.shop.getUsers().get(1).makeCart();
+
+        //Act
+        this.shop.getUsers().get(0).getCart().addToCart(this.shop.getProducts().get(2));
+        this.shop.getUsers().get(1).getCart().addToCart(this.shop.getProducts().get(2));
+        this.shop.makePurchase(this.shop.getUsers().get(0));
+
+        assert(this.shop.getProducts().get(2).getQuantity() == initialAmount - 1);
+
+        this.shop.makePurchase(this.shop.getUsers().get(1));
+
+        //Assert
+        assert(this.shop.getProducts().get(2).getQuantity() == initialAmount - 1);
+    }
+
+    @org.junit.Test
+    public void BruttoAndNettoTotalPrice() throws Exception {
+        //Arrange
+        this.shop.getUsers().get(0).makeCart();
+
+        //Act
+        this.shop.getUsers().get(0).getCart().addToCart(this.shop.getProducts().get(0));
+        this.shop.getUsers().get(0).getCart().addToCart(this.shop.getProducts().get(0));
+        this.shop.getUsers().get(0).getCart().addToCart(this.shop.getProducts().get(0));
+
+        PriceBrutto brutto = new PriceBrutto(this.shop.getUsers().get(0).getCart().getProducts(), 23);
+        PriceNetto netto = new PriceNetto(this.shop.getUsers().get(0).getCart().getProducts());
+
+        //Assert
+        assert(netto.getPrice() == 600.00);
+        //TODO: Finalise assert
+        //assert(brutto.getPrice() == ????);
+
+    }
+
+    @org.junit.Test
+    public void CalculateInvoiceWithDelivery() throws Exception {
+        //Arrange
+        this.shop.getUsers().get(0).makeCart();
+
+        //Act
+        this.shop.getUsers().get(0).getCart().addToCart(this.shop.getProducts().get(0));
+        this.shop.getUsers().get(0).getCart().addToCart(this.shop.getProducts().get(4));
+
+        this.shop.makePurchase(this.shop.getUsers().get(0));
+
+        this.shop.getUsers().get(0).getInvoices().get(0).addService("Delivery");
+
+        //Assert
+        System.out.println(this.shop.getUsers().get(0).getInvoices().get(0).getTotalPrice());
+        //TODO: Finalise assert
+    }
+
+    @org.junit.Test
+    public void CalculateInvoiceWithInstalling() throws Exception {
         //Arrange
 
         //Act
-        this.i += 1.0;
 
         //Assert
-        assert(this.i == 1.0);
+        //assert(x == y);
+    }
+
+    @org.junit.Test
+    public void TwoCartsForUser() throws Exception {
+        //Arrange
+
+        //Act
+
+        //Assert
+        //assert(x == y);
+    }
+
+    @org.junit.Test
+    public void DifferentBruttoPricePerCountry() throws Exception {
+        //Arrange
+
+        //Act
+
+        //Assert
+        //assert(x == y);
+    }
+
+    @org.junit.Test
+    public void AddingAndRetrievingFeedback() throws Exception {
+        //Arrange
+
+        //Act
+
+        //Assert
+        //assert(x == y);
+    }
+
+    @org.junit.Test
+    public void AddingProducts() throws Exception {
+        //Arrange
+
+        //Act
+
+        //Assert
+        //assert(x == y);
+    }
+
+    @org.junit.Test
+    public void AddingUsers() throws Exception {
+        //Arrange
+
+        //Act
+
+        //Assert
+        //assert(x == y);
     }
 
 }
