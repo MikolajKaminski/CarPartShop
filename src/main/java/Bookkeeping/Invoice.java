@@ -11,19 +11,9 @@ public class Invoice {
     private Cart cart;
     private Country country;
 
-    public Invoice(String country, Cart cart) {
-        switch(country) {
-            case "Belgium":
-                this.country = new Country(19, 4.99, 39.99);
-                break;
-            case "Luxembourg":
-                this.country = new Country(12, 9.99, 49.99);
-                break;
-            default:
-                this.country = new Country(23, 1.99, 24.99);
-        }
+    public Invoice(Country country, Cart cart) {
         this.cart = cart;
-
+        this.country = country;
         this.totalPrice = new PriceBrutto(this.cart.getProducts(), this.country.getVat());
     }
 

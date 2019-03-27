@@ -16,7 +16,7 @@ public class Shop {
     private static final int NUMBER_OF_FIELDS = 7;
 
     public Shop() {
-        this.products = new ArrayList<AProduct>();
+        this.products = new ArrayList<>();
         this.users = new ArrayList<User>();
     }
 
@@ -42,8 +42,10 @@ public class Shop {
         }
 
         String[] userList = users.split(", ");
-        for(String name : userList) {
-            this.users.add(new User(name));
+        for (int i = 0; i <= userList.length; i += 2) {
+            String userName = userList[i];
+            String userCountry = userList[i + 1];
+            this.users.add(new User(userName, userCountry));
         }
     }
 

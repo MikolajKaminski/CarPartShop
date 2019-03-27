@@ -3,17 +3,29 @@ package Shop;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import Bookkeeping.Country;
 import Bookkeeping.Invoice;
 
 public class User {
     private String name;
     private Cart cart;
     private List<Invoice> invoices;
+    private Country country;
 
-    public User(String name) {
+    public User(String name, String country) {
         this.name = name;
-
-        this.invoices = new ArrayList<Invoice>();
+        switch(country) {
+            case "Belgium":
+                this.country = new Country(19, 4.99, 39.99);
+                break;
+            case "Luxembourg":
+                this.country = new Country(12, 9.99, 49.99);
+                break;
+            default:
+                this.country = new Country(23, 1.99, 24.99);
+        }
+        this.invoices = new ArrayList<>();
     }
 
     public void makeCart() {
@@ -25,25 +37,7 @@ public class User {
     }
 
     public void makeInvoice() {
-        System.out.println("--------------------------------------");
-        System.out.println("Select country:");
-        System.out.println("Belgium: 1");
-        System.out.println("Netherlands: 2");
-        System.out.println("Luxembourg: 3");
-        //TODO: Input not working in IntelliJ
-        Scanner sc = new Scanner(System.in);
-        Integer input = sc.nextInt();
-        System.out.println("--------------------------------------");
-        switch(input) {
-            case 1:
-                this.invoices.add(new Invoice("Belgium", this.cart));
-                break;
-            case 3:
-                this.invoices.add(new Invoice("Luxembourg", this.cart));
-                break;
-            default:
-                this.invoices.add(new Invoice("Netherlands", this.cart));
-        }
+        this.invoices.add(new Invoice(country, cart));
     }
 
     public List<Invoice> getInvoices() {

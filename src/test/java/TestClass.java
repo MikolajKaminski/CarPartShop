@@ -12,7 +12,7 @@ public class TestClass {
             "Spoiler, 5, 750.00, black, Mazda, Mazda Spoiler Black, 15.00, " +
             "Wheel, 4, 150.00, silver, Mazda, Mazda Wheel, 7.00, " +
             "Wheel, 20, 200.00, silver, BMW, BMW Wheel, 12.00";
-    private String users = "Nick, Martin";
+    private String users = "Nick, Netherlands, Martin, Belgium, Elvis, Luxembourg";
 
 
     @org.junit.Before
