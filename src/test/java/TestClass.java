@@ -1,7 +1,10 @@
 import Bookkeeping.PriceBrutto;
 import Bookkeeping.PriceNetto;
 
+import Products.AProduct;
+import Products.Bumper;
 import Shop.Shop;
+import Shop.User;
 
 public class TestClass {
 
@@ -124,21 +127,31 @@ public class TestClass {
     @org.junit.Test
     public void AddingProducts() throws Exception {
         //Arrange
+        //Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00
+        Integer amountOfProducts = this.shop.getProducts().size();
+        AProduct newProduct = new Bumper(2, 300.00, "red", "Honda", "Honda Bumper Red", 35.00);
 
         //Act
+        this.shop.addProduct(newProduct);
+        Integer newAmountOfProducts = this.shop.getProducts().size();
 
         //Assert
-        //assert(x == y);
+        assert(amountOfProducts + 1 == newAmountOfProducts);
     }
 
     @org.junit.Test
     public void AddingUsers() throws Exception {
         //Arrange
+        //Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00
+        Integer amountOfUsers = this.shop.getUsers().size();
+        User newUser = new User("Allan", "Belgium");
 
         //Act
+        this.shop.addUser(newUser);
+        Integer newAmountOfUsers = this.shop.getUsers().size();
 
         //Assert
-        //assert(x == y);
+        assert(amountOfUsers + 1 == newAmountOfUsers);
     }
 
 }
