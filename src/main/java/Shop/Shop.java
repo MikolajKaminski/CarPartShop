@@ -45,7 +45,7 @@ public class Shop {
         for (int i = 0; i <= userList.length; i += 2) {
             String userName = userList[i];
             String userCountry = userList[i + 1];
-            this.users.add(new User(userName, userCountry));
+            this.addUser(new User(userName, userCountry));
         }
     }
 
