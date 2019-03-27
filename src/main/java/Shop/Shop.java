@@ -38,12 +38,12 @@ public class Shop {
 
                     System.out.println("Incorrect item.");
             }
-            this.products.add(factory.getProduct());
+            this.addProduct(factory.getProduct());
         }
 
         String[] userList = users.split(", ");
         for(String name : userList) {
-            this.users.add(new User(name));
+            this.addUser(new User(name));
         }
     }
 
@@ -55,14 +55,12 @@ public class Shop {
         return this.users;
     }
 
-    //TODO: Add new product
-    public void newProduct() {
-
+    public void addProduct(AProduct product) {
+        this.products.add(product);
     }
 
-    //TODO: Add new user
-    public void newUser() {
-
+    public void addUser(User user) {
+        this.users.add(user);
     }
 
     public void makePurchase(User user) {
