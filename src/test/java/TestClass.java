@@ -61,8 +61,7 @@ public class TestClass {
 
         //Assert
         assert(netto.getPrice() == 600.00);
-        //TODO: Finalise assert
-        //assert(brutto.getPrice() == ????);
+        assert(brutto.getPrice() == 738.00);
 
     }
 
@@ -80,8 +79,7 @@ public class TestClass {
         this.shop.getUsers().get(0).getInvoices().get(0).addService("Delivery");
 
         //Assert
-        System.out.println(this.shop.getUsers().get(0).getInvoices().get(0).getTotalPrice());
-        //TODO: Finalise assert
+        assert(this.shop.getUsers().get(0).getInvoices().get(0).getTotalPrice() == 521.06);
     }
 
     @org.junit.Test
