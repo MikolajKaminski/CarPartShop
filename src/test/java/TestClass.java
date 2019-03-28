@@ -86,12 +86,22 @@ public class TestClass {
 
     @org.junit.Test
     public void CalculateInvoiceWithInstalling() {
-        // TODO: Allan
+        
         //Arrange
+        User user = shop.getUsers().get(0);
+        user.makeCart();
+        Cart cart1 = user.getCart();
+        AProduct product1 = shop.getProducts().get(1);
 
         //Act
+        cart1.addToCart(product1);
+        shop.makePurchase(user);
+        Invoice invoice1 = user.getInvoices().get(0);
+        invoice1.addService("Installation");
+
 
         //Assert
+        assert(invoice1.getTotalPrice() == 215.24);
     }
 
     @org.junit.Test
