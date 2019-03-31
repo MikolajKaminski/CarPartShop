@@ -136,12 +136,40 @@ public class TestClass {
 
     @org.junit.Test
     public void DifferentBruttoPricePerCountry() {
-        // TODO: Martin
         //Arrange
+        //users
+        User nl_user = this.shop.getUsers().get(0);
+        nl_user.makeCart();
+        User be_user = this.shop.getUsers().get(1);
+        be_user.makeCart();
+        User lu_user = this.shop.getUsers().get(2);
+        lu_user.makeCart();
+        //carts
+        Cart nl_cart = nl_user.getCart();
+        Cart be_cart = be_user.getCart();
+        Cart lu_cart = lu_user.getCart();
+        //bruttos
+        PriceBrutto nl_brutto, be_brutto, lu_brutto;
 
         //Act
+        //nl_user
+        nl_cart.addToCart(this.shop.getProducts().get(1));
+        nl_cart.addToCart(this.shop.getProducts().get(0));
+        //be_user
+        be_cart.addToCart(this.shop.getProducts().get(5));
+        be_cart.addToCart(this.shop.getProducts().get(4));
+        //lu_user
+        lu_cart.addToCart(this.shop.getProducts().get(3));
+        //bruttos
+        nl_brutto = new PriceBrutto(nl_cart.getProducts(),nl_user.getCountry().getVat());
+        be_brutto = new PriceBrutto(be_cart.getProducts(),be_user.getCountry().getVat());
+        lu_brutto = new PriceBrutto(lu_cart.getProducts(),lu_user.getCountry().getVat());
 
         //Assert
+        assert(nl_brutto.getPrice() == 430.50);
+        assert(be_brutto.getPrice() == 416.50);
+        assert(lu_brutto.getPrice() == 840);
+
     }
 
     @org.junit.Test

@@ -40,6 +40,10 @@ public class User {
         invoices.add(new Invoice(this.country, cartClone));
     }
 
+    public Country getCountry(){
+        return this.country;
+    }
+
     public List<Invoice> getInvoices() {
         return this.invoices;
     }
