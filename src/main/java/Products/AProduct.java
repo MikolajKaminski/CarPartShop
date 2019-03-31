@@ -62,7 +62,32 @@ public abstract class AProduct {
     }
 
     public Boolean available() {
-        if(this.quantity > 0) return true;
-        return false;
+        return this.quantity > 0;
     }
+
+    public String getInfo() {
+        //Get basic info
+        String info = "";
+        info += "Name: " + this.name;
+        info += "\nBrand: " + this.brand;
+        info += "\n Color: " + this.color;
+        info += "\nPrice: " + this.price + "EUR net.";
+        info += "\nAvailable units: " + this.quantity;
+
+        //Get item specific info
+        info += this.getSpecificInfo();
+
+        //Get feedback if available
+        if(this.feedback.size() > 0) {
+            info += "\nFeedback: ";
+            for(Feedback feed : this.feedback) {
+                info += "\nRaiting: " + feed.getRaiting();
+                info += "\nComment: " + feed.getComment();
+            }
+        }
+
+        return info;
+    }
+
+    public abstract String getSpecificInfo();
 }

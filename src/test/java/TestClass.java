@@ -40,11 +40,10 @@ public class TestClass {
         this.shop.getUsers().get(1).getCart().addToCart(this.shop.getProducts().get(2));
         this.shop.makePurchase(this.shop.getUsers().get(0));
 
+        //Assert
         assert(this.shop.getProducts().get(2).getQuantity() == initialAmount - 1);
 
         this.shop.makePurchase(this.shop.getUsers().get(1));
-
-        //Assert
         assert(this.shop.getProducts().get(2).getQuantity() == initialAmount - 1);
     }
 
@@ -64,7 +63,6 @@ public class TestClass {
         //Assert
         assert(netto.getPrice() == 600.00);
         assert(brutto.getPrice() == 738.00);
-
     }
 
     @org.junit.Test
@@ -86,19 +84,17 @@ public class TestClass {
 
     @org.junit.Test
     public void CalculateInvoiceWithInstalling() {
-        
         //Arrange
-        User user = shop.getUsers().get(0);
+        User user = this.shop.getUsers().get(0);
         user.makeCart();
         Cart cart1 = user.getCart();
-        AProduct product1 = shop.getProducts().get(1);
+        AProduct product1 = this.shop.getProducts().get(1);
 
         //Act
         cart1.addToCart(product1);
-        shop.makePurchase(user);
+        this.shop.makePurchase(user);
         Invoice invoice1 = user.getInvoices().get(0);
         invoice1.addService("Installation");
-
 
         //Assert
         assert(invoice1.getTotalPrice() == 215.24);
@@ -137,30 +133,30 @@ public class TestClass {
     @org.junit.Test
     public void DifferentBruttoPricePerCountry() {
         //Arrange
-        //users
+        // users
         User nl_user = this.shop.getUsers().get(0);
         nl_user.makeCart();
         User be_user = this.shop.getUsers().get(1);
         be_user.makeCart();
         User lu_user = this.shop.getUsers().get(2);
         lu_user.makeCart();
-        //carts
+        // carts
         Cart nl_cart = nl_user.getCart();
         Cart be_cart = be_user.getCart();
         Cart lu_cart = lu_user.getCart();
-        //bruttos
+        // bruttos
         PriceBrutto nl_brutto, be_brutto, lu_brutto;
 
         //Act
-        //nl_user
+        // nl_user
         nl_cart.addToCart(this.shop.getProducts().get(1));
         nl_cart.addToCart(this.shop.getProducts().get(0));
-        //be_user
+        // be_user
         be_cart.addToCart(this.shop.getProducts().get(5));
         be_cart.addToCart(this.shop.getProducts().get(4));
-        //lu_user
+        // lu_user
         lu_cart.addToCart(this.shop.getProducts().get(3));
-        //bruttos
+        // bruttos
         nl_brutto = new PriceBrutto(nl_cart.getProducts(),nl_user.getCountry().getVat());
         be_brutto = new PriceBrutto(be_cart.getProducts(),be_user.getCountry().getVat());
         lu_brutto = new PriceBrutto(lu_cart.getProducts(),lu_user.getCountry().getVat());
@@ -176,8 +172,10 @@ public class TestClass {
     public void AddingAndRetrievingFeedback() {
         //Arrange
         AProduct product = this.shop.getProducts().get(0);
+
         //Act
         product.addFeedback("Perfect product", 4);
+
         //Assert
         Feedback productFeedback = product.getFeedback().get(0);
         assert (productFeedback.getComment().equals("Perfect product"));
@@ -187,7 +185,6 @@ public class TestClass {
     @org.junit.Test
     public void AddingProducts() {
         //Arrange
-        //Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00
         Integer amountOfProducts = this.shop.getProducts().size();
         AProduct newProduct = new Bumper(2, 300.00, "red", "Honda", "Honda Bumper Red", 35.00);
 
@@ -202,7 +199,6 @@ public class TestClass {
     @org.junit.Test
     public void AddingUsers() {
         //Arrange
-        //Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00
         Integer amountOfUsers = this.shop.getUsers().size();
         User newUser = new User("Allan", "Belgium");
 
@@ -214,5 +210,6 @@ public class TestClass {
         assert(amountOfUsers + 1 == newAmountOfUsers);
     }
 
-    //TODO: Should we maybe add some functionality to the products? Or do you think this is enough stuff?
+    //TODO: We should add more functionality for the Products
+    //Currently they extend the AProduct class but add no new functionality so they technically should not extend it...
 }
