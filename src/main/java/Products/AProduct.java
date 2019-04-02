@@ -70,7 +70,7 @@ public abstract class AProduct {
         String info = "";
         info += "Name: " + this.name;
         info += "\nBrand: " + this.brand;
-        info += "\n Color: " + this.color;
+        info += "\nColor: " + this.color;
         info += "\nPrice: " + this.price + "EUR net.";
         info += "\nAvailable units: " + this.quantity;
 

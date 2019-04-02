@@ -127,7 +127,7 @@ public class TestClass {
 
         //Assert
         assert(invoice1.getTotalPrice() == 521.06);
-        assert (invoice2.getTotalPrice() == 201.63);
+        assert(invoice2.getTotalPrice() == 201.63);
     }
 
     @org.junit.Test
@@ -178,8 +178,8 @@ public class TestClass {
 
         //Assert
         Feedback productFeedback = product.getFeedback().get(0);
-        assert (productFeedback.getComment().equals("Perfect product"));
-        assert (productFeedback.getRaiting() == 4);
+        assert(productFeedback.getComment().equals("Perfect product"));
+        assert(productFeedback.getRaiting() == 4);
     }
 
     @org.junit.Test
@@ -210,6 +210,19 @@ public class TestClass {
         assert(amountOfUsers + 1 == newAmountOfUsers);
     }
 
-    //TODO: We should add more functionality for the Products
-    //Currently they extend the AProduct class but add no new functionality so they technically should not extend it...
+    @org.junit.Test
+    public void productSpecialInfo() {
+        //Arrange
+        AProduct product = this.shop.getProducts().get(0);
+
+        //Act
+        String longInfo = product.getInfo();
+        String shortInfo = product.getSpecificInfo();
+
+        //Assert
+        assert(longInfo.length() > shortInfo.length());
+        assert(longInfo.indexOf("Compatible models") > 0);
+        assert(shortInfo.indexOf("Brand") < 0);
+    }
+
 }
