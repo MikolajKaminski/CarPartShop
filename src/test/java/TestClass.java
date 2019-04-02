@@ -15,10 +15,10 @@ public class TestClass {
 
     @org.junit.Before
     public void Before(){
-        String products = "Bumper, 3, 200.00, black, Mazda, Mazda Bumper Black, 30.00, " +
-                "Bumper, 2, 150.00, red, Mazda, Mazda Bumper Red, 30.00, " +
-                "Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00, " +
-                "Spoiler, 5, 750.00, black, Mazda, Mazda Spoiler Black, 15.00, " +
+        String products = "Bumper, 3, 200.00, black, Mazda, Mazda Bumper Black, 30.00, 4, MX-5 NA; MX-5 NB, " +
+                "Bumper, 2, 150.00, red, Mazda, Mazda Bumper Red, 30.00, 4, MX-5 NC; MX-5 ND, " +
+                "Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00, 5, 328i; 330d; 330i, " +
+                "Spoiler, 5, 750.00, black, Mazda, Mazda Spoiler Black, 15.00, MX-5 NA; MX-5 NB, " +
                 "Wheel, 4, 150.00, silver, Mazda, Mazda Wheel, 7.00, " +
                 "Wheel, 20, 200.00, silver, BMW, BMW Wheel, 12.00";
         String users = "Nick, Netherlands, Martin, Belgium, Elvis, Luxembourg";
@@ -186,7 +186,7 @@ public class TestClass {
     public void AddingProducts() {
         //Arrange
         Integer amountOfProducts = this.shop.getProducts().size();
-        AProduct newProduct = new Bumper(2, 300.00, "red", "Honda", "Honda Bumper Red", 35.00);
+        AProduct newProduct = new Bumper(2, 300.00, "red", "Honda", "Honda Bumper Red", 35.00, 2, "CR-V");
 
         //Act
         this.shop.addProduct(newProduct);

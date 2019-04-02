@@ -13,7 +13,6 @@ import Factories.BumperFactory;
 public class Shop {
     private List<AProduct> products;
     private List<User> users;
-    private static final int NUMBER_OF_FIELDS = 7;
 
     public Shop() {
         this.products = new ArrayList<>();
@@ -23,19 +22,21 @@ public class Shop {
     public void populateShop(String products, String users) {
         String[] productList = products.split(", ");
         IProductFactory factory = null;
-        for(int i = 0; i < productList.length; i += NUMBER_OF_FIELDS) {
+        for(int i = 0; i < productList.length; i++) {
             switch(productList[i]) {
                 case "Bumper":
-                    factory = new BumperFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
+                    factory = new BumperFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]), Integer.parseInt(productList[i + 7]), productList[i + 8]);
+                    i += 8;
                     break;
                 case "Spoiler":
-                    factory = new SpoilerFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
+                    factory = new SpoilerFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]), productList[i + 7]);
+                    i += 7;
                     break;
                 case "Wheel":
                     factory = new WheelFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
+                    i += 6;
                     break;
                 default:
-
                     System.out.println("Incorrect item.");
             }
             this.addProduct(factory.getProduct());
