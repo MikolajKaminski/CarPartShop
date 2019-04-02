@@ -213,16 +213,31 @@ public class TestClass {
     @org.junit.Test
     public void productSpecialInfo() {
         //Arrange
-        AProduct product = this.shop.getProducts().get(0);
+        AProduct product1 = this.shop.getProducts().get(0);
+        AProduct product2 = this.shop.getProducts().get(3);
+        AProduct product3 = this.shop.getProducts().get(4);
 
         //Act
-        String longInfo = product.getInfo();
-        String shortInfo = product.getSpecificInfo();
+        String longInfo1 = product1.getInfo();
+        String shortInfo1 = product1.getSpecificInfo();
+        String longInfo2 = product2.getInfo();
+        String shortInfo2 = product2.getSpecificInfo();
+        String longInfo3 = product3.getInfo();
+        String shortInfo3 = product3.getSpecificInfo();
 
         //Assert
-        assert(longInfo.length() > shortInfo.length());
-        assert(longInfo.indexOf("Compatible models") > 0);
-        assert(shortInfo.indexOf("Brand") < 0);
+        assert(longInfo1.length() > shortInfo1.length());
+        assert(longInfo2.length() > shortInfo2.length());
+        assert(longInfo3.length() > shortInfo3.length());
+
+        assert(longInfo1.contains("Safety rating"));
+        assert(!shortInfo1.contains("Brand"));
+
+        assert(longInfo2.contains("Compatible models"));
+        assert(!shortInfo2.contains("Brand"));
+
+        assert(longInfo3.contains("Inch size"));
+        assert(!shortInfo2.contains("Brand"));
     }
 
 }
