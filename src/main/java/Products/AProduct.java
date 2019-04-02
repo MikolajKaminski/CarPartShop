@@ -81,7 +81,7 @@ public abstract class AProduct {
         if(this.feedback.size() > 0) {
             info += "\nFeedback: ";
             for(Feedback feed : this.feedback) {
-                info += "\nRaiting: " + feed.getRaiting();
+                info += "\nRaiting: " + feed.getRating();
                 info += "\nComment: " + feed.getComment();
             }
         }

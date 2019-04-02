@@ -2,19 +2,19 @@ package Products;
 
 public class Feedback {
     private String comment;
-    private Integer raiting;
+    private Integer rating;
 
-    public Feedback(String comment, Integer raiting) {
+    public Feedback(String comment, Integer rating) {
         this.comment = comment;
-        this.raiting = raiting;
+        this.rating = rating;
     }
 
     public String getComment() {
         return this.comment;
     }
 
-    public Integer getRaiting() {
-        return this.raiting;
+    public Integer getRating() {
+        return this.rating;
     }
 
 }

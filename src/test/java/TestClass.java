@@ -179,7 +179,7 @@ public class TestClass {
         //Assert
         Feedback productFeedback = product.getFeedback().get(0);
         assert(productFeedback.getComment().equals("Perfect product"));
-        assert(productFeedback.getRaiting() == 4);
+        assert(productFeedback.getRating() == 4);
     }
 
     @org.junit.Test
