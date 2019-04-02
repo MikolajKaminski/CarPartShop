@@ -80,7 +80,7 @@ public class Shop {
             for(AProduct item : userCart) {
                 item.buyItem();
             }
-            System.out.println("Purchase complete.");
+            System.out.println(user.getName() + " purchase completed.");
             user.makeInvoice();
         } else {
             System.out.println("One or more items is unavailable.");
