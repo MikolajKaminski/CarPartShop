@@ -3,6 +3,7 @@ package Shop;
 import java.util.ArrayList;
 import java.util.List;
 
+import Bookkeeping.Invoice;
 import Factories.IProductFactory;
 import Factories.SpoilerFactory;
 import Factories.WheelFactory;
@@ -66,7 +67,7 @@ public class Shop {
         this.users.add(user);
     }
 
-    public void makePurchase(User user) {
+    public Invoice makePurchase(User user) {
         List<AProduct> userCart = user.getCart().getProducts();
 
         Boolean available = true;
@@ -81,10 +82,11 @@ public class Shop {
                 item.buyItem();
             }
             System.out.println(user.getName() + " purchase completed.");
-            user.makeInvoice();
+            return user.makeInvoice();
         } else {
             System.out.println("One or more items is unavailable.");
         }
+        return null;
     }
 }
 
