@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private List<Products.AProduct> products;
+    private List<AProduct> products;
 
     public Cart() {
-        this.products = new ArrayList<AProduct>();
+        this.products = new ArrayList<>();
     }
 
-    public void addToCart(Products.AProduct product) {
+    public void addToCart(AProduct product) {
         this.products.add(product);
     }
 
-    public List<Products.AProduct> getProducts() {
+    public List<AProduct> getProducts() {
         return this.products;
     }
 }

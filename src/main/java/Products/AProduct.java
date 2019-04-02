@@ -20,7 +20,7 @@ public abstract class AProduct {
         this.name = name;
         this.weight = weight;
 
-        this.feedback = new ArrayList<Feedback>();
+        this.feedback = new ArrayList<>();
     }
 
     public void addFeedback(String comment, Integer raiting) {
