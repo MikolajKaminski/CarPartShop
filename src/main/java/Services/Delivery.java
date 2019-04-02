@@ -15,7 +15,6 @@ public class Delivery extends AService {
         this.deliveryPrice = country.getDeliveryCost();
     }
 
-    @Override
     public Double getPrice() {
         Double totalWeight = 0.0;
 

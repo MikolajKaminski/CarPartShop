@@ -16,10 +16,9 @@ public class Facade {
     }
 
     public Invoice buy(User user, AProduct product) {
-        shop.addUser(user);
         user.makeCart();
         user.getCart().addToCart(product);
-        return shop.makePurchase(user);
+        return this.shop.makePurchase(user);
     }
 
     public Invoice buyWithDelivery(User user, Invoice invoice) {
@@ -44,26 +43,26 @@ public class Facade {
         for(AProduct product : products) {
             cart.addToCart(product);
         }
-        Invoice invoice = shop.makePurchase(user);
+        Invoice invoice = this.shop.makePurchase(user);
 
         if (invoice == null) {
             System.out.println("Unable to buy the products.");
         }
-        return shop.makePurchase(user);
+        return this.shop.makePurchase(user);
     }
 
     public User getRandomUser() {
-        List<User> users = shop.getUsers();
-        return users.get(random.nextInt(users.size()));
+        List<User> users = this.shop.getUsers();
+        return users.get(this.random.nextInt(users.size()));
     }
 
     public AProduct getRandomProduct() {
-        List<AProduct> products = shop.getProducts();
-        return products.get(random.nextInt(products.size()));
+        List<AProduct> products = this.shop.getProducts();
+        return products.get(this.random.nextInt(products.size()));
     }
 
     public Invoice buyTheMostExpensive(User user) {
-        List<AProduct> products = shop.getProducts();
+        List<AProduct> products = this.shop.getProducts();
         AProduct expensiveProduct = products.get(0);
         for(AProduct product : products) {
             if (product.getPrice() > expensiveProduct.getPrice()) {
@@ -74,7 +73,7 @@ public class Facade {
     }
 
     public Invoice buyTheNewest(User user) {
-        List<AProduct> products = shop.getProducts();
+        List<AProduct> products = this.shop.getProducts();
         AProduct newestProduct = products.get(products.size() - 1);
         return buy(user, newestProduct);
     }

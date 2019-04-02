@@ -31,7 +31,7 @@ public class TestClass {
         this.shop = new Shop();
         //Populate shop
         this.shop.populateShop(products, users);
-        facade = new Facade(shop);
+        this.facade = new Facade(shop);
     }
 
     @org.junit.Test
@@ -247,86 +247,108 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void facadeInvoice(){
-        AProduct product1 = shop.getProducts().get(0);
-        User user = shop.getUsers().get(0);
+    public void facadeInvoice() {
+        //Arrange
+        AProduct product1 = this.shop.getProducts().get(0);
+        User user = this.shop.getUsers().get(0);
 
-        Invoice regularInvoice = facade.buy(user, product1);
+        //Act
+        Invoice regularInvoice = this.facade.buy(user, product1);
 
+        //Assert
         assert(regularInvoice.getTotalPrice() == 246.0);
     }
 
     @org.junit.Test
-    public void facadeDeliveryInvoice(){
-        AProduct product1 = shop.getProducts().get(0);
-        User user = shop.getUsers().get(0);
+    public void facadeDeliveryInvoice() {
+        //Arrange
+        AProduct product1 = this.shop.getProducts().get(0);
+        User user = this.shop.getUsers().get(0);
 
-        Invoice regularInvoice = facade.buy(user, product1);
-        Invoice deliveryInvoice = facade.buyWithDelivery(user, regularInvoice);
+        //Act
+        Invoice regularInvoice = this.facade.buy(user, product1);
+        Invoice deliveryInvoice = this.facade.buyWithDelivery(user, regularInvoice);
 
+        //Assert
         assert(deliveryInvoice.getTotalPrice() == 246.0);
     }
 
     @org.junit.Test
-    public void facadeInstallationInvoice(){
-        AProduct product1 = shop.getProducts().get(0);
-        User user = shop.getUsers().get(0);
+    public void facadeInstallationInvoice() {
+        //Arrange
+        AProduct product1 = this.shop.getProducts().get(0);
+        User user = this.shop.getUsers().get(0);
 
-        Invoice regularInvoice = facade.buy(user, product1);
-        Invoice installationInvoice = facade.buyWithInstallation(user, regularInvoice);
+        //Act
+        Invoice regularInvoice = this.facade.buy(user, product1);
+        Invoice installationInvoice = this.facade.buyWithInstallation(user, regularInvoice);
 
+        //Assert
         assert(installationInvoice.getTotalPrice() == 246.0);
     }
 
     @org.junit.Test
-    public void facadeFullInvoice(){
-        AProduct product1 = shop.getProducts().get(0);
-        User user = shop.getUsers().get(0);
+    public void facadeFullInvoice() {
+        //Arrange
+        AProduct product1 = this.shop.getProducts().get(0);
+        User user = this.shop.getUsers().get(0);
 
-        Invoice regularInvoice = facade.buy(user, product1);
-        Invoice fullServiceInvoice = facade.buyWithFullService(user, regularInvoice);
+        //Act
+        Invoice regularInvoice = this.facade.buy(user, product1);
+        Invoice fullServiceInvoice = this.facade.buyWithFullService(user, regularInvoice);
 
+        //Assert
         assert(fullServiceInvoice.getTotalPrice() == 246.0);
     }
 
     @org.junit.Test
-    public void facadeMultipleInvoices(){
-        AProduct product1 = shop.getProducts().get(0);
-        AProduct product2 = shop.getProducts().get(1);
-        User user = shop.getUsers().get(0);
+    public void facadeMultipleInvoices() {
+        //Arrange
+        AProduct product1 = this.shop.getProducts().get(0);
+        AProduct product2 = this.shop.getProducts().get(1);
+        User user = this.shop.getUsers().get(0);
 
         List<AProduct> products = new ArrayList<>();
         products.add(product1);
         products.add(product2);
 
-        Invoice multipleProductsInvoice = facade.buyMultiple(user, products);
+        //Act
+        Invoice multipleProductsInvoice = this.facade.buyMultiple(user, products);
 
+        //Assert
         assert(multipleProductsInvoice.getTotalPrice() == 430.5);
     }
 
     @org.junit.Test
-    public void facadeExpensiveInvoice(){
-        User user = shop.getUsers().get(0);
+    public void facadeExpensiveInvoice() {
+        //Arrange
+        User user = this.shop.getUsers().get(0);
 
-        Invoice expensiveInvoice = facade.buyTheMostExpensive(user);
+        //Act
+        Invoice expensiveInvoice = this.facade.buyTheMostExpensive(user);
 
+        //Assert
         assert(expensiveInvoice.getTotalPrice() == 922.5);
     }
 
     @org.junit.Test
-    public void facadeNewestInvoice(){
-        User user = shop.getUsers().get(0);
+    public void facadeNewestInvoice() {
+        //Arrange
+        User user = this.shop.getUsers().get(0);
 
-        Invoice newestProductInvoice = facade.buyTheNewest(user);
+        //Act
+        Invoice newestProductInvoice = this.facade.buyTheNewest(user);
 
+        //Assert
         assert(newestProductInvoice.getTotalPrice() == 246.0);
     }
 
     @org.junit.Test
-    public void facadeRandomInvoice(){
+    public void facadeRandomInvoice() {
+        //Act
+        Invoice randomInvoice = this.facade.randomUserRandomProduct();
 
-        Invoice randomInvoice = facade.randomUserRandomProduct();
-
+        //Assert
         assert(randomInvoice.getTotalPrice() != null);
     }
 }
