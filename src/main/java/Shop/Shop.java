@@ -33,8 +33,8 @@ public class Shop {
                     i += 7;
                     break;
                 case "Wheel":
-                    factory = new WheelFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]));
-                    i += 6;
+                    factory = new WheelFactory(Integer.parseInt(productList[i + 1]), Double.parseDouble(productList[i + 2]), productList[i + 3], productList[i + 4], productList[i + 5], Double.parseDouble(productList[i + 6]), productList[i + 7]);
+                    i += 7;
                     break;
                 default:
                     System.out.println("Incorrect item.");

@@ -19,8 +19,8 @@ public class TestClass {
                 "Bumper, 2, 150.00, red, Mazda, Mazda Bumper Red, 30.00, 4, MX-5 NC; MX-5 ND, " +
                 "Bumper, 1, 400.00, black, BMW, BMW Bumper Black, 45.00, 5, 328i; 330d; 330i, " +
                 "Spoiler, 5, 750.00, black, Mazda, Mazda Spoiler Black, 15.00, MX-5 NA; MX-5 NB, " +
-                "Wheel, 4, 150.00, silver, Mazda, Mazda Wheel, 7.00, " +
-                "Wheel, 20, 200.00, silver, BMW, BMW Wheel, 12.00";
+                "Wheel, 4, 150.00, silver, Mazda, Mazda Wheel, 7.00, R17, " +
+                "Wheel, 20, 200.00, silver, BMW, BMW Wheel, 12.00, R19, ";
         String users = "Nick, Netherlands, Martin, Belgium, Elvis, Luxembourg";
         //Make shop
         this.shop = new Shop();
