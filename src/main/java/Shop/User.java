@@ -47,4 +47,8 @@ public class User {
     public List<Invoice> getInvoices() {
         return this.invoices;
     }
+
+    public String getName() {
+        return name;
+    }
 }
