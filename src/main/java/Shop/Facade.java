@@ -31,6 +31,7 @@ public class Facade {
         user.makeCart();
         user.getCart().addToCart(product);
         Invoice invoice = this.shop.makePurchase(user);
+        invoice.addService("Installation");
     }
 
     private void buyWithFullService(User user) {
