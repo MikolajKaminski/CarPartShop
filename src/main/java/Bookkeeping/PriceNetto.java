@@ -9,7 +9,7 @@ import java.util.List;
 public class PriceNetto {
 
     private Double totalPrice = 0.0;
-    private List<AService> services = new ArrayList<AService>();
+    private List<AService> services = new ArrayList<>();
 
     public PriceNetto(List<AProduct> products) {
         for(AProduct product : products) {
