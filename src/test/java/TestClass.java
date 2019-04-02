@@ -8,10 +8,15 @@ import Products.Feedback;
 import Shop.Shop;
 import Shop.User;
 import Shop.Cart;
+import Shop.Facade;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestClass {
 
     private Shop shop;
+    private Facade facade;
 
     @org.junit.Before
     public void Before(){
@@ -26,6 +31,7 @@ public class TestClass {
         this.shop = new Shop();
         //Populate shop
         this.shop.populateShop(products, users);
+        facade = new Facade(shop);
     }
 
     @org.junit.Test
@@ -241,10 +247,86 @@ public class TestClass {
     }
 
     @org.junit.Test
-    public void facadeTestAll(){
-        //test all methods in Facade.java
-        //Arrange
-        //Act
-        //Assert
+    public void facadeInvoice(){
+        AProduct product1 = shop.getProducts().get(0);
+        User user = shop.getUsers().get(0);
+
+        Invoice regularInvoice = facade.buy(user, product1);
+
+        assert(regularInvoice.getTotalPrice() == 246.0);
+    }
+
+    @org.junit.Test
+    public void facadeDeliveryInvoice(){
+        AProduct product1 = shop.getProducts().get(0);
+        User user = shop.getUsers().get(0);
+
+        Invoice regularInvoice = facade.buy(user, product1);
+        Invoice deliveryInvoice = facade.buyWithDelivery(user, regularInvoice);
+
+        assert(deliveryInvoice.getTotalPrice() == 246.0);
+    }
+
+    @org.junit.Test
+    public void facadeInstallationInvoice(){
+        AProduct product1 = shop.getProducts().get(0);
+        User user = shop.getUsers().get(0);
+
+        Invoice regularInvoice = facade.buy(user, product1);
+        Invoice installationInvoice = facade.buyWithInstallation(user, regularInvoice);
+
+        assert(installationInvoice.getTotalPrice() == 246.0);
+    }
+
+    @org.junit.Test
+    public void facadeFullInvoice(){
+        AProduct product1 = shop.getProducts().get(0);
+        User user = shop.getUsers().get(0);
+
+        Invoice regularInvoice = facade.buy(user, product1);
+        Invoice fullServiceInvoice = facade.buyWithFullService(user, regularInvoice);
+
+        assert(fullServiceInvoice.getTotalPrice() == 246.0);
+    }
+
+    @org.junit.Test
+    public void facadeMultipleInvoices(){
+        AProduct product1 = shop.getProducts().get(0);
+        AProduct product2 = shop.getProducts().get(1);
+        User user = shop.getUsers().get(0);
+
+        List<AProduct> products = new ArrayList<>();
+        products.add(product1);
+        products.add(product2);
+
+        Invoice multipleProductsInvoice = facade.buyMultiple(user, products);
+
+        assert(multipleProductsInvoice.getTotalPrice() == 430.5);
+    }
+
+    @org.junit.Test
+    public void facadeExpensiveInvoice(){
+        User user = shop.getUsers().get(0);
+
+        Invoice expensiveInvoice = facade.buyTheMostExpensive(user);
+
+        assert(expensiveInvoice.getTotalPrice() == 922.5);
+    }
+
+    @org.junit.Test
+    public void facadeNewestInvoice(){
+        User user = shop.getUsers().get(0);
+
+        Invoice newestProductInvoice = facade.buyTheNewest(user);
+
+        assert(newestProductInvoice.getTotalPrice() == 246.0);
+    }
+
+    @org.junit.Test
+    public void facadeRandomInvoice(){
+
+        Invoice randomInvoice = facade.randomUserRandomProduct();
+
+        assert(randomInvoice.getTotalPrice() != null);
     }
 }
