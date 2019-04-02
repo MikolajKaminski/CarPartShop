@@ -14,6 +14,7 @@ public class Facade {
     }
 
     private void buyOneOfEach(String brand, User user) {
+
     }
 
     private void buyWithDelivery(User user, AProduct product) {
@@ -25,8 +26,11 @@ public class Facade {
         invoice.addService("Delivery");
     }
 
-    private void buyWithInstallation(User user) {
-        //
+    private void buyWithInstallation(User user, AProduct product) {
+        this.shop.addUser(user);
+        user.makeCart();
+        user.getCart().addToCart(product);
+        Invoice invoice = this.shop.makePurchase(user);
     }
 
     private void buyWithFullService(User user) {

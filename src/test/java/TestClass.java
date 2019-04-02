@@ -240,4 +240,11 @@ public class TestClass {
         assert(!shortInfo2.contains("Brand"));
     }
 
+    @org.junit.Test
+    public void facadeTestAll(){
+        //test all methods in Facade.java
+        //Arrange
+        //Act
+        //Assert
+    }
 }
