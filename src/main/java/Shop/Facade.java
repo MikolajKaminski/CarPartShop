@@ -11,7 +11,9 @@ public class Facade {
     private Random random;
 
     public Facade(Shop shop) {
-        this.shop = shop;
+        this.shop = shop; /*TODO: I think this line should look more like this.shop = new Shop();
+                                  This way we satisfy the connection between the classes Facade -> Shop
+                                  And only this way we can call it a Facade pattern I think...*/
         this.random = new Random();
     }
 
@@ -51,16 +53,6 @@ public class Facade {
         return this.shop.makePurchase(user);
     }
 
-    public User getRandomUser() {
-        List<User> users = this.shop.getUsers();
-        return users.get(this.random.nextInt(users.size()));
-    }
-
-    public AProduct getRandomProduct() {
-        List<AProduct> products = this.shop.getProducts();
-        return products.get(this.random.nextInt(products.size()));
-    }
-
     public Invoice buyTheMostExpensive(User user) {
         List<AProduct> products = this.shop.getProducts();
         AProduct expensiveProduct = products.get(0);
@@ -82,4 +74,13 @@ public class Facade {
         return buy(getRandomUser(), getRandomProduct());
     }
 
+    private User getRandomUser() {
+        List<User> users = this.shop.getUsers();
+        return users.get(this.random.nextInt(users.size()));
+    }
+
+    private AProduct getRandomProduct() {
+        List<AProduct> products = this.shop.getProducts();
+        return products.get(this.random.nextInt(products.size()));
+    }
 }
