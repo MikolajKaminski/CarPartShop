@@ -27,11 +27,12 @@ public class TestClass {
                 "Wheel, 4, 150.00, silver, Mazda, Mazda Wheel, 7.00, R17, " +
                 "Wheel, 20, 200.00, silver, BMW, BMW Wheel, 12.00, R19, ";
         String users = "Nick, Netherlands, Martin, Belgium, Elvis, Luxembourg";
+        // make a facade
+        this.facade = new Facade();
         //Make shop
-        this.shop = new Shop();
+        this.shop = facade.getShop();
         //Populate shop
         this.shop.populateShop(products, users);
-        this.facade = new Facade(shop);
     }
 
     @org.junit.Test

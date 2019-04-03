@@ -10,10 +10,8 @@ public class Facade {
     private Shop shop;
     private Random random;
 
-    public Facade(Shop shop) {
-        this.shop = shop; /*TODO: I think this line should look more like this.shop = new Shop();
-                                  This way we satisfy the connection between the classes Facade -> Shop
-                                  And only this way we can call it a Facade pattern I think...*/
+    public Facade() {
+        this.shop = new Shop();
         this.random = new Random();
     }
 
@@ -82,5 +80,9 @@ public class Facade {
     private AProduct getRandomProduct() {
         List<AProduct> products = this.shop.getProducts();
         return products.get(this.random.nextInt(products.size()));
+    }
+
+    public Shop getShop() {
+        return this.shop;
     }
 }
